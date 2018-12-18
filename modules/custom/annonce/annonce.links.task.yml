@@ -20,3 +20,10 @@ entity.annonce.delete_form:
   title: Delete
   weight: 10
 
+entity.annonce.collection:
+  route_name:  entity.annonce.collection
+  base_route:  system.admin_content #enable Devel contrib module and Webprofiler (incuded) to get the route
+  title: 'Annonces'
+  weight: 10
+
+
