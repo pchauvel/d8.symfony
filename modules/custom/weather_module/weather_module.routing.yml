@@ -1,23 +1,15 @@
+
 weather_homepage:
   path: /weather
   defaults:
-    _controller: Drupal\weather_module\Controller\WeatherController::homepage
+    _controller: Drupal\weather_module\Controller\WeatherModuleController::homepage
   requirements:
     _permission: 'access content'
 
-weather_now:
-  path: '/weather/{cityId}'
+weather_show:
+  path: /weather/{cityId}
   defaults:
-    _controller: Drupal\weather_module\Controller\WeatherNowController::content
-    param: NULL
+    _controller: Drupal\weather_module\Controller\WeatherModuleController::showWeather
   requirements:
     _permission: 'access content'
     cityId: '\d+'
-
-weather_forecast:
-  path: '/weather/forecast/{city}'
-  defaults:
-    _controller: Drupal\weather_module\Controller\WeatherForecastController::content
-    param: NULL
-  requirements:
-    _permission: 'access content'

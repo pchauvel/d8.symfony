@@ -8,7 +8,8 @@
         "wikimedia/composer-merge-plugin": "^1.4",
         "drush/drush": "^9.5",
         "symfony/dom-crawler": "^3.4",
-        "drupal/console": "^1.8"
+        "drupal/console": "^1.8",
+        "drupal/admin_toolbar": "^1.25"
     },
     "replace": {
         "drupal/core": "^8.6"

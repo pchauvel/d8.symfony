@@ -16,7 +16,7 @@ function weather_module_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.weather_module':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      $output .= '<p>' . t('Current weather information') . '</p>';
       return $output;
 
     default:
@@ -31,5 +31,11 @@ function weather_module_theme() {
     'weather_module' => [
       'render element' => 'children',
     ],
+
+    'weather_show' => [
+      'variables' => [
+        'weather' => [],
+      ]
+    ]
   ];
 }

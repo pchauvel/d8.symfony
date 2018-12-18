@@ -1,0 +1,18 @@
+<section>
+  <h2>{{ weather.name }}</h2>
+
+  <div class="weather">
+    <ul class="information">
+      <li>{{ weather.main.temp }}°C</li>
+      <li>
+        <ul class="weather">
+          {% for weather_data in weather.weather %}
+            <li>{{ weather_data.main }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>Last update: {{ weather.dt|date('d/m/Y H:i:s') }}</li>
+    </ul>
+  </div>
+</section>
+

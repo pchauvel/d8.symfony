@@ -1,5 +1,5 @@
-name: 'weather_module'
+name: 'Weather module'
 type: module
-description: 'My Awesome Module'
+description: 'Current weather information'
 core: 8.x
 package: 'Custom'

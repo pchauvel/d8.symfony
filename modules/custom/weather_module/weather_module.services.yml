@@ -1,0 +1,23 @@
+
+parameters:
+  twig.config:
+    debug: true
+
+  weather_module.api.app_id: '335dca8044f2118f9d73c277abc405e3'
+
+services:
+  weather_module.api:
+    class: Drupal\weather_module\WeatherApi
+    arguments:
+      - '%weather_module.api.app_id%'
+      - '@session'
+      - '@event_dispatcher'
+
+  weather_module.logger:
+    class: Drupal\Core\Logger\LoggerChannel;
+    factory: logger.factory:get
+    arguments: ['weather_module']
+
+  Drupal\weather_module\Event\WeatherApiSubscriber:
+    tags:
+      - name: 'event_subscriber'
