@@ -44,11 +44,11 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/annonce/{annonce}",
+ *     "canonical" = "/annonce/{annonce}",
  *     "add-form" = "/admin/structure/annonce/add",
  *     "edit-form" = "/admin/structure/annonce/{annonce}/edit",
  *     "delete-form" = "/admin/structure/annonce/{annonce}/delete",
- *     "collection" = "/admin/structure/annonce",
+ *     "collection" = "/admin/annonce",
  *   },
  *   field_ui_base_route = "annonce.settings"
  * )
