@@ -27,10 +27,19 @@ class AnnonceAccessControlHandler extends EntityAccessControlHandler {
         return AccessResult::allowedIfHasPermission($account, 'view published annonce entities');
 
       case 'update':
-        return AccessResult::allowedIfHasPermission($account, 'edit annonce entities');
+        if($account->id() == $entity->getOwnerId()){
+          return AccessResult::allowed();
+        }
+        else return AccessResult::forbidden();
+        break;
+
 
       case 'delete':
-        return AccessResult::allowedIfHasPermission($account, 'delete annonce entities');
+        if($account->id() == $entity->getOwnerId()){
+          return AccessResult::allowed();
+        }
+        else return AccessResult::forbidden();
+        break;
     }
 
     // Unknown operation, no opinion.
