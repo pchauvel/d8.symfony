@@ -1,0 +1,5 @@
+name: 'annonce'
+type: module
+description: 'Pour la formation'
+core: 8.x
+package: 'Formation'
