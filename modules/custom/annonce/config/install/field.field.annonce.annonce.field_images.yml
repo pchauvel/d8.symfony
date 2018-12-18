@@ -1,0 +1,27 @@
+uuid: 2cc797dc-063d-4b7d-b47b-8bc71320a98f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.annonce.field_images
+  module:
+    - annonce
+    - file
+id: annonce.annonce.field_images
+field_name: field_images
+entity_type: annonce
+bundle: annonce
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

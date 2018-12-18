@@ -1,0 +1,23 @@
+uuid: dbbd53be-d695-456d-941a-2fd4609121e8
+langcode: fr
+status: true
+dependencies:
+  module:
+    - annonce
+    - file
+id: annonce.field_images
+field_name: field_images
+entity_type: annonce
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

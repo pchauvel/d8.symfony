@@ -1,0 +1,46 @@
+uuid: 6d0d8744-2bf0-4083-82ce-220d7e0bb13f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.annonce.annonce.field_images
+  module:
+    - annonce
+    - file
+id: annonce.annonce.default
+targetEntityType: annonce
+bundle: annonce
+mode: default
+content:
+  field_images:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }
