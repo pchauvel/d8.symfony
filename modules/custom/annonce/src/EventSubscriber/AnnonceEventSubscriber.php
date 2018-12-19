@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
 
 /**
  * Class AnnonceEventSubscriber.
@@ -19,18 +20,25 @@ class AnnonceEventSubscriber implements EventSubscriberInterface {
    */
   protected $messenger;
   /**
+ * Drupal\Core\Session\AccountProxyInterface definition.
+ *
+ * @var \Drupal\Core\Session\AccountProxyInterface
+ */
+  protected $currentUser;
+  /**
    * Drupal\Core\Session\AccountProxyInterface definition.
    *
    * @var \Drupal\Core\Session\AccountProxyInterface
    */
-  protected $currentUser;
+  protected $currentRouteMatch;
 
   /**
    * Constructs a new AnnonceEventSubscriber object.
    */
-  public function __construct(MessengerInterface $messenger, AccountProxyInterface $current_user) {
+  public function __construct(MessengerInterface $messenger, AccountProxyInterface $current_user, ResettableStackedRouteMatchInterface $current_route_match) {
     $this->messenger = $messenger;
     $this->currentUser = $current_user;
+    $this->currentRouteMatch = $current_route_match;
   }
 
   /**
@@ -49,7 +57,12 @@ class AnnonceEventSubscriber implements EventSubscriberInterface {
    * @param GetResponseEvent $event
    */
   public function request_callnack(Event $event) {
-    drupal_set_message('Event kernel.request thrown by Subscriber in module annonce.', 'status', TRUE);
+    $route = $this->currentRouteMatch->getRouteName();
+    if($route == 'entity.annonce.canonical'){
+      $this->messenger->addMessage('Ceci est une annonce.', 'status', TRUE);
+    }
+
+
   }
 
 }
