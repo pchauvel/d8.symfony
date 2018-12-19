@@ -16,6 +16,8 @@
  */
 #}
 <div{{ attributes.addClass('annonce') }}>
+  <h2>ANNONCE HTML TWIG</h2>
+  {{ kint(content) }}
   {% if content %}
     {{- content -}}
   {% endif %}

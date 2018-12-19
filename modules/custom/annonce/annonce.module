@@ -22,3 +22,13 @@ function annonce_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function annonce_theme(){
+  return['annonce' => [
+    'file' => 'annonce.page.inc',
+    'render element' => 'elements',
+    ]];
+}
