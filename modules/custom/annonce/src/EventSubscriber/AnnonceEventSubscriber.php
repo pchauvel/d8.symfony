@@ -7,6 +7,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
+use \Drupal\Core\Database\Connection;
 
 /**
  * Class AnnonceEventSubscriber.
@@ -35,10 +36,11 @@ class AnnonceEventSubscriber implements EventSubscriberInterface {
   /**
    * Constructs a new AnnonceEventSubscriber object.
    */
-  public function __construct(MessengerInterface $messenger, AccountProxyInterface $current_user, ResettableStackedRouteMatchInterface $current_route_match) {
+  public function __construct(MessengerInterface $messenger, AccountProxyInterface $current_user, ResettableStackedRouteMatchInterface $current_route_match, Connection $database) {
     $this->messenger = $messenger;
     $this->currentUser = $current_user;
     $this->currentRouteMatch = $current_route_match;
+    $this->database = $database;
   }
 
   /**
@@ -60,7 +62,18 @@ class AnnonceEventSubscriber implements EventSubscriberInterface {
     $route = $this->currentRouteMatch->getRouteName();
     if($route == 'entity.annonce.canonical'){
       $this->messenger->addMessage('Ceci est une annonce.', 'status', TRUE);
+      $this->database->insert('annonce_history')
+        ->fields([
+          'uid' => $this->currentUser->id(),
+          'aid' => $this->currentRouteMatch->getParameter('annonce')->id(),
+          'date' => REQUEST_TIME,
+        ])
+        ->execute();
+    } else {
+      $this->messenger->addMessage('Event for ' . $this->currentUser->getDisplayName(), 'status', TRUE);
     }
+
+
 
 
   }
